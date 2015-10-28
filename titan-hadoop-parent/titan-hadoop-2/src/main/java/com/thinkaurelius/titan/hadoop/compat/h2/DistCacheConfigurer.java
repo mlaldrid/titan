@@ -23,8 +23,13 @@ public class DistCacheConfigurer extends AbstractDistCacheConfigurer implements 
         FileSystem localFS = FileSystem.getLocal(conf);
         FileSystem jobFS = FileSystem.get(conf);
 
+        System.out.println("LOOK HERE");
+        System.out.println("localFS: " + localFS.toString());
+        System.out.println("jobFS: " + jobFS.toString());
         for (Path p : getLocalPaths()) {
+            System.out.println("path: " + p.toString());
             Path stagedPath = uploadFileIfNecessary(localFS, p, jobFS);
+            System.out.println("stagedPath: " + stagedPath.toString());
             // Calling this method decompresses the archive and makes Hadoop
             // handle its classfiles individually.  This leads to crippling
             // overhead times (10+ seconds) even with the LocalJobRunner
